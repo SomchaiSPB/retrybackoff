@@ -2,6 +2,7 @@ package retrybackoff
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"math"
 	"math/rand"
@@ -14,8 +15,8 @@ func RetryWithBackoff(operation func() error, maxRetries int, maxBackoff time.Du
 	for i := 0; i < maxRetries; i++ {
 		if err := operation(); err != nil {
 			if i == maxRetries-1 {
-				log.Printf("max connection retries exceeded: %v", err)
-				return err
+				log.Printf("max retries exceeded: %v", err)
+				return fmt.Errorf("%w: %v", ErrMaxRetriesExceeded, err)
 			}
 
 			backoffTime := time.Duration(math.Pow(2, float64(i))) * time.Second
