@@ -11,7 +11,7 @@ GoRetryBackoff is a Go package providing a robust retry mechanism with exponenti
 ## Installation
 
 ```bash
-go get github.com/SomchaiSPB/retrybackoff
+go get github.com/SomchaiSPB/retrybackoff@latest
 ```
 
 ## Usage
